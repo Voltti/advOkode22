@@ -1,12 +1,15 @@
 'use strict';
 
-import { open } from 'node:fs/promises';
+// import { open } from 'node:fs/promises';
+import fs from 'fs';
 
-const file = await open('./03_01_test');
+// const file = await open('./03_01_test');
+let file = fs.readFileSync('./03_01_input');
+file = file.toString().split('\n');
 const duplicates = [];
 let priorities = 0;
-
-for await (const line of file.readLines() ) {
+for (let line of file) {
+//for await (const line of file.readLines() ) { // Needs node > v18
 	const comp1 = line.slice(0, line.length / 2).split("").sort( (a,b) => a.charCodeAt(0) - b.charCodeAt(0));
 	const comp2 = line.slice(line.length / 2).split("").sort( (a,b) => a.charCodeAt(0) - b.charCodeAt(0));
 
@@ -23,8 +26,6 @@ for await (const line of file.readLines() ) {
 
 	}
 }
-console.log(duplicates);
-	
 
 for (let i of duplicates) {
 	if (i.charCodeAt(0) <= 90) priorities += i.charCodeAt(0) - 65 + 27;
