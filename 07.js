@@ -39,7 +39,7 @@ sizes.forEach((x) => {
 });
 console.log(total);
 
-// Part two - Smallest folder size below the cutoff point.
+// Part two - Smallest folder size that is larger than the cutoff point.
 let big_enough = 0;
 const cutoff = 8381165;
 for (let x of sizes) {
